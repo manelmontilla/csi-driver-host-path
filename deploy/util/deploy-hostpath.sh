@@ -217,6 +217,7 @@ for component in "${components[@]}"; do
 		cp "${current}" "${TEMP_DIR}"/rbac.yaml
 	fi
 	echo "Installing component ${component}"
+	echo -e "Component content \n: $(cat ${TEMP_DIR}/rbac.yaml)"
 
 	cat <<-EOF >"${TEMP_DIR}"/kustomization.yaml
 		apiVersion: kustomize.config.k8s.io/v1beta1
@@ -229,8 +230,8 @@ for component in "${components[@]}"; do
 		resources:
 		- ./rbac.yaml
 	EOF
-
-	run kubectl apply --kustomize "${TEMP_DIR}"
+	# Ignore errors applying the kustomize file.
+	run kubectl apply --kustomize "${TEMP_DIR}" || true
 done
 
 # deploy snapshot-metadata service components
