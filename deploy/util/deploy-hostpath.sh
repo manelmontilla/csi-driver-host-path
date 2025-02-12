@@ -217,7 +217,7 @@ for component in "${components[@]}"; do
 		cp "${current}" "${TEMP_DIR}"/rbac.yaml
 	fi
 	echo "Installing component ${component}"
-	echo -e "Component content \n: $(cat ${TEMP_DIR}/rbac.yaml)"
+	# echo -e "Component content \n: $(cat ${TEMP_DIR}/rbac.yaml)"
 
 	cat <<-EOF >"${TEMP_DIR}"/kustomization.yaml
 		apiVersion: kustomize.config.k8s.io/v1beta1
