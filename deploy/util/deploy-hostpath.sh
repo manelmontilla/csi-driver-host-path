@@ -230,8 +230,9 @@ for component in "${components[@]}"; do
 		resources:
 		- ./rbac.yaml
 	EOF
+	echo "applying the following files in dir: $(ls ${TEMP_DIR})"
 	# Ignore errors applying the kustomize file.
-	run kubectl apply --kustomize "${TEMP_DIR}" || true
+	run kubectl apply --kustomize "${TEMP_DIR}"
 done
 
 # deploy snapshot-metadata service components
